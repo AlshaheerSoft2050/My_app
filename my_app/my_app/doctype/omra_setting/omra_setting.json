@@ -1,0 +1,48 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-08-28 22:58:29.645480",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "maximum_period",
+  "customer_link"
+ ],
+ "fields": [
+  {
+   "fieldname": "maximum_period",
+   "fieldtype": "Data",
+   "label": "\u0627\u0642\u0635\u0649 \u0641\u062a\u0631\u0647 \u0644\u0644\u062a\u0646\u0628\u064a\u0629"
+  },
+  {
+   "fieldname": "customer_link",
+   "fieldtype": "Data",
+   "label": "\u0631\u0627\u0628\u0637 \u0627\u0644\u0645\u0648\u0642\u0639"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2024-08-28 23:29:48.261283",
+ "modified_by": "Administrator",
+ "module": "My App",
+ "name": "omra_setting",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
