@@ -5,6 +5,7 @@ app_description = "My App"
 app_email = "shahir4soft@gmail.com"
 app_license = "MIT"
 
+fixtures = ["Custom Field"]
 # Includes in <head>
 # ------------------
 
@@ -108,9 +109,10 @@ app_license = "MIT"
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-# 	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+override_doctype_class = {
+	#"Sales Order": "my_app.overrides.sales_order.CustomSalesOrder"
+    "Customer": "my_app.overrides.customer.CustomCustomer"
+}
 
 # Document Events
 # ---------------
@@ -127,6 +129,14 @@ app_license = "MIT"
 # Scheduled Tasks
 # ---------------
 
+scheduler_events = {
+    "cron": {
+        "*/5 * * * *": [
+          #  "my_app.overrides.customerstatus.update_remaining_days_for_all_customers"
+          "my_app.overrides.customer.update_remaining_days_for_all_customers"
+        ]
+    }
+}
 # scheduler_events = {
 # 	"all": [
 # 		"my_app.tasks.all"
