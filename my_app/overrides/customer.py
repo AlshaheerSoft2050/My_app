@@ -59,10 +59,7 @@ def update_remaining_days_for_all_customers():
         frappe.db.set_value('Customer', customer["name"], 'custom_remaining_days_of_stay', remaining_days)
          
     frappe.db.commit()       
-    frappe.publish_realtime(
-                event='msgprint',
-                message="helo"
-            )
+    
 
 
 
