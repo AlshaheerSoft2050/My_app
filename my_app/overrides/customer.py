@@ -63,7 +63,7 @@ def update_remaining_days_for_all_customers():
             remaining_days = customer["custom_remaining_days_of_stay"]
             customer_link = customer_links+""+name
 
-            message = f"تنبيه: العميل <a href='{customer_link}'>{customer_name}</a> (رقم الجواز: {maximum_period}) لديه {remaining_days} يومًا فقط متبقية من إقامته."
+            message = f"تنبيه: العميل <a href='{customer_link}'>{customer_name}</a> (رقم الجواز: {custom_passport_number}) لديه {remaining_days} يومًا فقط متبقية من إقامته."
 
             frappe.publish_realtime(
                 event='msgprint',
