@@ -57,6 +57,34 @@ def update_remaining_days_for_all_customers():
         remaining_days = days_stay - days_since_entry
         remaining_days = max(remaining_days, 0)  # Ensure non-negative value
         frappe.db.set_value('Customer', customer["name"], 'custom_remaining_days_of_stay', remaining_days)
+         
+    frappe.db.commit()       
+    frappe.publish_realtime(
+                event='msgprint',
+                message="helo"
+            )
+
+
+
+def alertemaining():
+    customers = frappe.db.get_list(
+        "Customer",
+        fields=["name", "custom_remaining_days_of_stay", "custom_entry_date", "custom_number_of_days_of_stay", "customer_name", "custom_passport_number"]
+    )
+
+    settings = frappe.db.get_value("omra_setting", None, ["maximum_period", "customer_link", "another_field"], as_dict=True)
+    maximum_period = settings.get("maximum_period")
+    maximum_period = int(settings.get("maximum_period"))
+    customer_links= settings.get("customer_link")
+    now = getdate()
+    for customer in customers:
+        entry_date = getdate(customer.custom_entry_date)
+        days_stay = int(customer["custom_number_of_days_of_stay"])
+        days_since_entry = date_diff(now, customer["custom_entry_date"])
+        name=customer["name"]
+        # Calculate remaining days
+        remaining_days = days_stay - days_since_entry
+        remaining_days = max(remaining_days, 0)  # Ensure non-negative value
         if 0 < remaining_days <= maximum_period:
             customer_name = customer["customer_name"]
             custom_passport_number = customer["custom_passport_number"]
@@ -67,9 +95,8 @@ def update_remaining_days_for_all_customers():
 
             frappe.publish_realtime(
                 event='msgprint',
-                message=message,
-                user=frappe.session.user
+                message=message
             )
 
-    frappe.db.commit()       
+    
 

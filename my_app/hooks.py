@@ -131,10 +131,15 @@ override_doctype_class = {
 
 scheduler_events = {
     "cron": {
-        "*/2 * * * *": [
+        "*/1 * * * *": [
           #  "my_app.overrides.customerstatus.update_remaining_days_for_all_customers"
           "my_app.overrides.customer.update_remaining_days_for_all_customers"
+        ],
+        "*/5 * * * *": [
+          #  "my_app.overrides.customerstatus.update_remaining_days_for_all_customers"
+          "my_app.overrides.customer.alertemaining"
         ]
+
     }
 }
 # scheduler_events = {
